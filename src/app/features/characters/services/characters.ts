@@ -1,8 +1,8 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, map } from 'rxjs';
 import { Character } from '../types/character.type';
-import { ApiResponse } from '../../../shared/types/api-response.types';
+import { ApiResponse, InfoResponse } from '../../../shared/types/api-response.types';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +25,13 @@ export class CharactersService {
     return this.http.get<ApiResponse<Character[]>>(this.url, {
       params: { page: page },
     });
+  }
+
+  getCharacterByUrl(url: string){
+    return this.http.get<Character>(url);
+  }
+
+  getCharacterCount(){
+    return this.http.get<ApiResponse<Character>>(this.url);
   }
 }

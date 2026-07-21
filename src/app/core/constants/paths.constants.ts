@@ -11,3 +11,6 @@ export const ERROR_PATHS = {
 export const EPISODES_PATHS = {
   base: 'episodes',
 };
+export const LOCATIONS_PATHS = {
+  base: 'locations',
+};
