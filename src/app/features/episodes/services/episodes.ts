@@ -26,4 +26,8 @@ export class EpisodesService {
       params: { page: page },
     });
   }
+
+  getEpisodeCount(){
+      return this.http.get<ApiResponse<Episode>>(this.url);
+    }
 }
