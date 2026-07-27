@@ -3,7 +3,7 @@ import { Location } from '../../types/location.type';
 import { LocationCard } from '../../components/location-card/location-card';
 import { LocationsService } from '../../services/locations';
 import { ApiResponse, InfoResponse } from '../../../../shared/types/api-response.types';
-import { Pagination } from '../../components/pagination/pagination';
+import { Pagination } from '../../../../shared/components/pagination/pagination';
 import { CharactersService } from '../../../characters/services/characters';
 import { Character } from '../../../characters/types/character.type';
 

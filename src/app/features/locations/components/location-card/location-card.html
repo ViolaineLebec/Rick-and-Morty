@@ -8,28 +8,26 @@
 
     <div class="relative">
 
-        <div class="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-slate-950/80 px-4 py-2 backdrop-blur">
-        </div>
-
-
         <!-- Content -->
         <div class="relative flex flex-1 flex-col p-6">
 
-            <h2 class="line-clamp-1 text-3xl font-black text-white">
+            <h2 class="line-clamp-1 text-3xl font-black text-white m-3">
                 {{ location().name }}
             </h2>
 
-            <div class="flex items-center justify-between">
-                <span class="text-slate-400">
-                    Habitants
-                </span>
-                <button (click)="getCharacter()">Let's go</button>
+            <div class="flex flex-col items-start gap-3">
+                <h4 class="text-slate-400"> Habitants </h4>
+                <button (click)="getCharacter()" class="rounded-3xl border border-green-400 p-2">
+                    afficher/masquer 
+                </button>
+                @if (showResidents()) {
                 <ul class="font-semibold text-white">
                     @for(resident of residents(); track resident.id) {
 
-      <p>{{resident.name}}</p>
-      }
+                    <li>{{resident.name}}</li>
+                    }
                 </ul>
+            }
             </div>
 
         </div>

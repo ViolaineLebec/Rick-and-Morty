@@ -3,7 +3,7 @@ import { Episode } from '../types/episode.type';
 import { EpisodeCard } from '../components/episode-card/episode-card';
 import { EpisodesService } from '../services/episodes';
 import { ApiResponse, InfoResponse } from '../../../shared/types/api-response.types';
-import { Pagination } from '../components/pagination/pagination';
+import { Pagination } from '../../../shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-episodes',

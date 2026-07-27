@@ -2,11 +2,6 @@
   <!-- Background spatial -->
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e293b_0%,#020617_65%)]"></div>
 
-  <!-- Glow portail -->
-  <div
-    class="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-green-400/10 blur-[150px]"
-  ></div>
-
   <!-- Contenu -->
   <div class="relative z-10 mx-auto max-w-7xl">
     <!-- Header de page -->
@@ -33,6 +28,7 @@
     
     <!-- Cards -->
     <app-pagination [currentPage]="currentPage()" [totalPages]="totalPage()" (changePage)="changePage($event)"/>
+    
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       @for(location of locations(); track location.id) {
 

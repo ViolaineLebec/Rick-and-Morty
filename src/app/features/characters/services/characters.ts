@@ -13,11 +13,16 @@ export class CharactersService {
   readonly characterSignal = this.characters.asReadonly();
   readonly url = 'https://rickandmortyapi.com/api/character/';
 
-  getCharactersFromService(page: number = 1): Observable<ApiResponse<Character[]>> {
+
+  getCharactersFromService(page: number = 1, filters: { name?: string; status?: string; gender?: string; species?: string } = {}): Observable<ApiResponse<Character[]>> {
+    let params = new HttpParams().set('page', page);
+    if (filters.name?.trim()) params = params.set('name', filters.name.trim());
+  if (filters.status) params = params.set('status', filters.status);
+  if (filters.gender) params = params.set('gender', filters.gender);
+  if (filters.species) params = params.set('species', filters.species);
+    
     return this.http
-      .get<ApiResponse<Character[]>>(this.url, {
-        params: { page: page },
-      })
+      .get<ApiResponse<Character[]>>(this.url, {params})
       .pipe(tap((response: ApiResponse<Character[]>) => this.characters.set(response.results)));
   }
 

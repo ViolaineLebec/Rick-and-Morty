@@ -10,22 +10,30 @@ import { Character } from '../../../characters/types/character.type';
   templateUrl: './location-card.html',
   styleUrl: './location-card.css',
 })
-export class LocationCard implements OnInit{
+export class LocationCard implements OnInit {
   characterService = inject(CharactersService);
   location = input.required<Location>();
   residents = signal<Character[]>([]);
+  showResidents = signal<boolean>(false);
 
-  ngOnInit(){
-    
+
+  ngOnInit() {
+
   }
 
-  getCharacter(){
-const residentUrls = this.location().residents || [];
+  getCharacter() {
+    const residentUrls = this.location().residents || [];
+        this.showResidents.update(visible => !visible);
 
-        residentUrls.forEach((url) => {
-          this.characterService.getCharacterByUrl(url).subscribe((character: Character) => {
-            this.residents.update((prev) => [...prev, character]);
-          });
-        });
+
+    if (this.showResidents() && this.residents().length === 0){
+
+    residentUrls.forEach((url) => {
+      this.characterService.getCharacterByUrl(url).subscribe((character: Character) => {
+        this.residents.update((prev) => [...prev, character]);
+      });
+    });
+
+  }
   }
 }

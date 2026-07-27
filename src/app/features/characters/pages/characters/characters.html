@@ -3,25 +3,21 @@
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,#1e293b_0%,#020617_65%)]"></div>
 
   <!-- Glow portail -->
-  <div
-    class="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-green-400/10 blur-[150px]"
-  ></div>
+  <div class="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-green-400/10 blur-[150px]">
+  </div>
 
   <!-- Contenu -->
   <div class="relative z-10 mx-auto max-w-7xl">
     <!-- Header de page -->
     <div class="mb-16 text-center">
       <span
-        class="rounded-full border border-green-400/30 bg-green-400/10 px-4 py-2 text-sm uppercase tracking-[0.3em] text-green-300"
-      >
+        class="rounded-full border border-green-400/30 bg-green-400/10 px-4 py-2 text-sm uppercase tracking-[0.3em] text-green-300">
         Multiverse Database
       </span>
 
       <h1 class="mt-6 text-5xl font-black md:text-6xl">
         Personnages du
-        <span
-          class="bg-gradient-to-r from-green-300 via-cyan-300 to-green-400 bg-clip-text text-transparent"
-        >
+        <span class="bg-gradient-to-r from-green-300 via-cyan-300 to-green-400 bg-clip-text text-transparent">
           multivers
         </span>
       </h1>
@@ -31,14 +27,62 @@
       </p>
     </div>
 
+    <!-- barre de recherche -->
+    <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+      <!-- champ de recherche -->
+      <input type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event); onFilterChange()"
+        placeholder="Rechercher un personnage..." class="w-full rounded-2xl border border-green-400/30 bg-slate-900/80 px-5 py-3 text-white
+        placeholder-slate-400 backdrop-blur-xl focus:border-green-400 focus:outline-none focus:ring-2
+        focus:ring-green-400/20" />
+
+      <!-- filtre pour le statut -->
+      <select [ngModel]="selectedStatus()" (ngModelChange)="selectedStatus.set($event) ; onFilterChange()"
+        class="w-full rounded-2xl border border-green-400/30 bg-slate-900/80 px-5 py-3 text-white backdrop-blur-xl focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400/20">
+        <option value="">Statut: Tous</option>
+        <option value="alive">Vivant</option>
+        <option value="dead">Mort</option>
+        <option value="unknown">Inconnu</option>
+      </select>
+
+      <!-- filtre pour le genre -->
+      <select [ngModel]="selectedGender()" (ngModelChange)="selectedGender.set($event); onFilterChange()"
+        class="w-full rounded-2xl border border-green-400/30 bg-slate-900/80 px-5 py-3 text-white backdrop-blur-xl focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400/20">
+        <option value="">Genre: Tous</option>
+        <option value="female">Féminin</option>
+        <option value="male">Masculin</option>
+        <option value="genderless">Sans genre (Genderless)</option>
+        <option value="unknown">Inconnu (Unknown)</option>
+      </select>
+
+      <!-- filtre pour l'espèce -->
+      <select [ngModel]="selectedSpecies()" (ngModelChange)="selectedSpecies.set($event); onFilterChange()"
+        class="w-full rounded-2xl border border-green-400/30 bg-slate-900/80 px-5 py-3 text-white backdrop-blur-xl focus:border-green-400 focus:outline-none focus:ring-2 focus:ring-green-400/20">
+        <option value="">Espèce: Toutes</option>
+        <option value="human">Humain</option>
+        <option value="alien">Alien</option>
+        <option value="humanoid">Humanoïde</option>
+        <option value="poopybutthole">Poopybutthole</option>
+        <option value="mythological">Créature mythologique</option>
+        <option value="robot">Robot</option>
+        <option value="cronenberg">Cronenberg</option>
+        <option value="disease">Maladie</option>
+        <option value="animal">Animal</option>
+      </select>
+    </div>
     <!-- Cards -->
-    <app-pagination [currentPage]="currentPage()" [totalPages]="totalPage()" (changePage)="changePage($event)"/>
+
+    <app-pagination [currentPage]="currentPage()" [totalPages]="totalPage()" (changePage)="changePage($event)" />
+
     <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
       @for(character of characters(); track character.id) {
 
       <app-character-card [character]="character" />
 
+      } @empty {
+      <p class="text-slate-400">Aucun personnage trouvé pour "{{ searchQuery() }}".</p>
       }
+
     </div>
   </div>
 </section>
