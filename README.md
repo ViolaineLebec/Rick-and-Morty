@@ -1,6 +1,26 @@
-# PortalDex
+# Rick & Morty (Projet Simplon)
+## Contexte du projet
+Le studio de production de Rick & Morty fait appel à vous pour développer un site web permettant aux fans de découvrir la série grâce à l'API publique Rick and Morty API. Une base à déjà été construite à vous de mettre en place les éléments manquants.
+### Modalités pédagogiques
+Individuel;
 
-PortalDex est une application web inspirée de l'univers de **Rick & Morty**, permettant d'explorer les différents personnages du multivers.
+Développement (1J).
+
+### Voici les fonctionnalité à développer:
+
+La liste des épisodes ainsi que leur date de première diffusion. 
+La liste des planètes avec ces différents habitants. 
+Utiliser les données de l’api pour les chiffres clés de la page d’accueil. 
+Rechercher un personnage par son nom. 
+Filtrer les personnages (statut, espèce, genre).
+
+### Critères de performance
+Le site est responsive.
+Les données sont récupérées depuis l'API Rick & Morty.
+Les fonctionnalités de recherche, de filtrage et de pagination sont opérationnelles.
+L'interface est ergonomique et cohérente.
+Le code est organisé, lisible et maintenable.
+Le code a été versionné régulièrement.
 
 ## Development server
 
