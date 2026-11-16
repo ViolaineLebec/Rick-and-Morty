@@ -4,13 +4,20 @@ on:
     branches: [tests]
 
 jobs:
-  steps:
-  - name: checkout github
-    uses: actions/checkout@v7
-  - name: installation de Node js
-    uses: actions/setup-node@v7
-    with:
-      node-version: 24
-      package-manager-cache: false # Disable automatic npm caching if not required
-  - run: npm ci
-  - run: npm test
+  frontend :
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout github
+      uses: actions/checkout@v7
+    - name: installation de Node js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        package-manager-cache: false # Disable automatic npm caching if not required
+    - run: npm ci
+    - run: npm test
+
+
+
+      # name: Installation des dépendances
+      # run: npm install
