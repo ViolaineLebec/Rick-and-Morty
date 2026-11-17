@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Episode } from '../types/episode.type';
 import { ApiResponse } from '../../../shared/types/api-response.types';
@@ -27,7 +27,7 @@ export class EpisodesService {
     });
   }
 
-  getEpisodeCount(){
-      return this.http.get<ApiResponse<Episode>>(this.url);
-    }
+  getEpisodeCount() {
+    return this.http.get<ApiResponse<Episode>>(this.url);
+  }
 }
