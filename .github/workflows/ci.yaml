@@ -27,16 +27,8 @@ jobs:
           ${{ runner.os }}-build-${{ env.cache-name }}-
           ${{ runner.os }}-build-
           ${{ runner.os }}-
-        enableCrossOsArchive: false
-        fail-on-cache-miss: false
-        lookup-only: false
-        save-always: false
-
     - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-      name: List the state of node modules
-      continue-on-error: true
-      run: npm list
-    - name: Installlation des dépendances
+      name: Installlation des dépendances
       run: npm ci
     - name: lint eslint
       run: npm run lint
@@ -45,7 +37,7 @@ jobs:
     - name: build
       run: npm run build
     - name: Upload des artifacts de build
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: build-dist
         path: dist/
