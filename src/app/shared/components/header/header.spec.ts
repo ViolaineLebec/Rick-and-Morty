@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { beforeEach, describe, expect, it } from 'vitest';
-import { Header } from './header';
+import { describe, expect, it } from 'vitest';
+
 
 describe('Header', () => {
   it("", () => {
