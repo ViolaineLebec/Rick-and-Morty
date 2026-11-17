@@ -1,0 +1,52 @@
+name: Intégration continue pour les tests
+on: 
+  push:
+    branches: [tests]
+
+jobs:
+  frontend :
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout github
+      uses: actions/checkout@v7
+    - name: installation de Node js
+      uses: actions/setup-node@v7
+      with:
+        node-version: 24
+        package-manager-cache: true # Disable automatic npm caching if not required
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v5
+      env:
+        cache-name: cache-node-modules
+      with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+        path: ~/.npm
+        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-${{ env.cache-name }}-
+          ${{ runner.os }}-build-
+          ${{ runner.os }}-
+        enableCrossOsArchive: false
+        fail-on-cache-miss: false
+        lookup-only: false
+        save-always: false
+
+    - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+      name: List the state of node modules
+      continue-on-error: true
+      run: npm list
+    - name: Installlation des dépendances
+      run: npm ci
+    - name: lint eslint
+      run: npm run lint
+    - name: tests 
+      run: npm run test
+    - name: build
+      run: npm run build
+    - name: Upload des artifacts de build
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-dist
+        path: dist/
+        retention-days: 7

@@ -1,6 +1,5 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { ApiResponse } from '../../shared/types/api-response.types';
 import { CharactersService } from '../characters/services/characters';
 import { LocationsService } from '../locations/services/locations';
 import { EpisodesService } from '../episodes/services/episodes';

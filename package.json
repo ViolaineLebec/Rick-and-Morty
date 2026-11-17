@@ -7,7 +7,8 @@
     "start:docker": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "eslint"
   },
   "prettier": {
     "printWidth": 100,
@@ -37,11 +38,16 @@
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
+    "@eslint/js": "^10.0.1",
     "@tailwindcss/postcss": "^4.1.12",
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0",
     "jsdom": "^27.1.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.12",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "typescript-eslint": "^8.73.0",
+    "vite": "^7.3.6",
+    "vitest": "^4.1.12"
   }
 }

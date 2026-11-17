@@ -1,12 +1,11 @@
 import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { Location } from '../../types/location.type';
-import { NgClass } from '@angular/common';
 import { CharactersService } from '../../../characters/services/characters';
 import { Character } from '../../../characters/types/character.type';
 
 @Component({
   selector: 'app-location-card',
-  imports: [NgClass],
+  imports: [],
   templateUrl: './location-card.html',
   styleUrl: './location-card.css',
 })
@@ -23,17 +22,17 @@ export class LocationCard implements OnInit {
 
   getCharacter() {
     const residentUrls = this.location().residents || [];
-        this.showResidents.update(visible => !visible);
+    this.showResidents.update(visible => !visible);
 
 
-    if (this.showResidents() && this.residents().length === 0){
+    if (this.showResidents() && this.residents().length === 0) {
 
-    residentUrls.forEach((url) => {
-      this.characterService.getCharacterByUrl(url).subscribe((character: Character) => {
-        this.residents.update((prev) => [...prev, character]);
+      residentUrls.forEach((url) => {
+        this.characterService.getCharacterByUrl(url).subscribe((character: Character) => {
+          this.residents.update((prev) => [...prev, character]);
+        });
       });
-    });
 
-  }
+    }
   }
 }

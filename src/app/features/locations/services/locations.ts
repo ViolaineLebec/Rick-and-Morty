@@ -1,5 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Location } from '../types/location.type';
 import { ApiResponse } from '../../../shared/types/api-response.types';
@@ -27,8 +27,8 @@ export class LocationsService {
     });
   }
 
-   getLocationCount(){
-      return this.http.get<ApiResponse<Location>>(this.url);
-    }
-  
+  getLocationCount() {
+    return this.http.get<ApiResponse<Location>>(this.url);
+  }
+
 }
