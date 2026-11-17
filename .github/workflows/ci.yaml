@@ -15,7 +15,9 @@ jobs:
         node-version: 24
         package-manager-cache: false # Disable automatic npm caching if not required
     - name: Installlation des dépendances
-      run: npm ci
+      run: |
+        npm ci
+        npm update
     # - run: npx vitest run src/app/shared/components/header/header.spec.ts
     - name: lint eslint
       run: npm run lint
